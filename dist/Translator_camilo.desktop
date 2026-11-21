@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Translator_camilo
-Exec="/home/camilo/Documents/programming/python_eco/project/flet-translate_float/dist/Translator_camilo"
-Icon=Translator_camilo
-Terminal=false
-Categories=Utility;
-StartupWMClass=Translator_camilo

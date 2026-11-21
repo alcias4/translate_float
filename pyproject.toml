@@ -3,7 +3,7 @@ name = "flet-translate-float"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.15"
 authors = [
     { name = "Flet developer", email = "you@example.com" }
 ]
@@ -21,7 +21,6 @@ dev = [
     "flet-web>=1.1.2",
     # Integration testing with `flet test` / pytest. The `test` extra brings in
     # pytest, pytest-asyncio and the screenshot-comparison dependencies.
-    "flet[test]>=1.1.2",
 ]
 
 [tool.pytest.ini_options]

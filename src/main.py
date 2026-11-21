@@ -115,14 +115,17 @@ def main(page: ft.Page) -> None:
     page.horizontal_alignment = ft.CrossAxisAlignment.STRETCH
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.padding=0
-    page.window.frameless = True
+    page.window.frameless = False
     # Native window: transparent
     page.window.bgcolor = ft.Colors.TRANSPARENT
 
     # Page: 50% transparent
     page.bgcolor = ft.Colors.with_opacity(
-        0.8, "#25293B"
+        0.9, "#25293B"
     )
+
+    page.window.width = 500
+    page.window.height =  500
     page.render(App)
 
 

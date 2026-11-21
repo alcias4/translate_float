@@ -2,7 +2,9 @@
 
 
 require :
-
+# for windows 
+0. irm https://ollama.com/install.ps1 | iex 
+# linux or mac
 1. curl -fsSL https://ollama.com/install.sh | sh
 2. ❯ ollama run hf.co/Menterium/translategemma-4b-it-GGUF:Q8_0
 
@@ -17,3 +19,7 @@ flet pack src/main.py \
     --add-data "src/assets:assets" \
     --yes \
     -- --paths . --clean
+
+# windows 
+
+flet pack src/main.py --name Translator_camilo --add-data "src/assets:assets" --yes -- --paths . --clean
