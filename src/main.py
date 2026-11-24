@@ -1,10 +1,21 @@
+import os
+import sys
+
+if sys.stdout is None:
+    sys.stdout = open(os.devnull, "w", encoding="utf-8")
+
+if sys.stderr is None:
+    sys.stderr = open(os.devnull, "w", encoding="utf-8")
+
+
+
 import flet as ft
 import pyperclip
 from logic.translate import translate_text
 from logic.text_to_voice import text_voice
 import subprocess
-
-
+import platform
+import asyncio
 
 @ft.component
 def App()-> ft.Control:
@@ -26,9 +37,22 @@ def App()-> ft.Control:
     async def handle_audio(e: ft.Event[ft.Button]) -> None:
         paths =await text_voice(text=text)
 
-        for path in paths:
-            subprocess.run(["pw-play", str(path)], check=True)
-
+        match platform.system():
+            case "Windows":
+                import winsound
+                for path in paths:
+                    await asyncio.to_thread(
+                        winsound.PlaySound,
+                        str(path),
+                        winsound.SND_FILENAME
+                    )
+            case "linux":
+                for path in paths:
+                    subprocess.run(["pw-play", str(path)], check=True)
+            case _:
+                raise NotImplementedError(
+                    "Unsupported operating system"
+                )
 
     text_past = ft.TextField(
         label="text to translate",

@@ -43,4 +43,19 @@ uv run flet pack src/main.py \
     dist/Translator_camilo/_internal/espeakng_loader/
 # windows 
 
-flet pack src/main.py --name Translator_camilo --add-data "src/assets:assets" --yes -- --paths . --clean
+uv run flet pack src/main.py `
+    --name Translator_camilo `
+    --onedir `
+    --add-data "src/assets:assets" `
+    --yes `
+    -- --paths src `
+    --collect-all language_tags `
+    --collect-all misaki `
+    --collect-all phonemizer `
+    --collect-all segments `
+    --collect-all csvw `
+    --collect-all kokoro `
+    --collect-all espeakng_loader `
+    --collect-all en_core_web_sm `
+    --copy-metadata en-core-web-sm `
+    --log-level INFO
