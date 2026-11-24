@@ -35,5 +35,4 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='C:/Users/camil/AppData/Local/Temp/c922b720-9cc9-48bf-babf-4319f06673f9',
 )

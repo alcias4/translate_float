@@ -1,6 +1,8 @@
 import flet as ft
 import pyperclip
-from src.translate import translate_text
+from logic.translate import translate_text
+from logic.text_to_voice import text_voice
+import subprocess
 
 
 
@@ -11,15 +13,21 @@ def App()-> ft.Control:
 
     text_trn , set_txtTrans =  ft.use_state("hola") #type: ignore
 
-    def handle_copy(e: ft.Event[ft.Button]) -> None:
+    async def handle_copy(e: ft.Event[ft.Button]) -> None:
         text_new:str =  pyperclip.paste()
 
         set_text(text_new)
-
-        result = translate_text(text_new)
+        result = "loading..."
+        set_txtTrans(result)
+        result = await translate_text(text_new)
 
         set_txtTrans(result)
 
+    async def handle_audio(e: ft.Event[ft.Button]) -> None:
+        paths =await text_voice(text=text)
+
+        for path in paths:
+            subprocess.run(["pw-play", str(path)], check=True)
 
 
     text_past = ft.TextField(
@@ -65,7 +73,7 @@ def App()-> ft.Control:
     btn_trans = ft.Button(
         "translate", 
         min_width=150, 
-        width=400, 
+        expand=4, 
         bgcolor="#8494FF",
         color=ft.Colors.WHITE ,
         style=ft.ButtonStyle(
@@ -84,11 +92,17 @@ def App()-> ft.Control:
         
         on_click=handle_copy)
 
+    btn_audio = ft.Button(
+        "Audio",
+        icon=ft.Icons.VOLUME_UP,
+        on_click=handle_audio
+    )
+
     col_main = ft.Column(
         [
             ft.Text("Translate", size=30),
             text_past,
-            btn_trans,
+            ft.Row(controls=[btn_audio, btn_trans]),
             text_translate
         ], 
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -96,7 +110,7 @@ def App()-> ft.Control:
 
     return ft.Container(
         content=col_main,
-        padding=20,
+        padding=0,
         border_radius=10,
     )
 
@@ -114,7 +128,7 @@ def main(page: ft.Page) -> None:
     )
     page.horizontal_alignment = ft.CrossAxisAlignment.STRETCH
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    page.padding=0
+    page.padding=20
     page.window.frameless = False
     # Native window: transparent
     page.window.bgcolor = ft.Colors.TRANSPARENT
@@ -123,9 +137,9 @@ def main(page: ft.Page) -> None:
     page.bgcolor = ft.Colors.with_opacity(
         0.9, "#25293B"
     )
-
+    page.scroll = ft.ScrollMode.AUTO
     page.window.width = 500
-    page.window.height =  500
+    page.window.height =  600
     page.render(App)
 
 

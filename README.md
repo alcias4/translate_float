@@ -10,7 +10,7 @@ require :
 
 ## for wayland 
 3. sudo pacman -S wl-clipboard
-
+4. sudo pacman -S espeak-ng 
 
 # create executable 
 

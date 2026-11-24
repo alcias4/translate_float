@@ -18,7 +18,8 @@ env/
 # Flet
 .flet/
 build/
-
+dist
+.spec
 # IDE
 .idea/
 .vscode/

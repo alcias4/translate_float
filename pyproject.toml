@@ -9,9 +9,12 @@ authors = [
 ]
 dependencies = [
     "flet>=1.1.2",
+    "kokoro>=0.9.4",
+    "numpy>=2.5.5",
     "ollama>=0.6.3",
     "pyinstaller>=6.22.3",
     "pyperclip>=1.11.0",
+    "soundfile>=0.14.0",
 ]
 
 [dependency-groups]
