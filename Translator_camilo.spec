@@ -18,8 +18,6 @@ tmp_ret = collect_all('csvw')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 tmp_ret = collect_all('kokoro')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
-tmp_ret = collect_all('espeakng_loader')
-datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 tmp_ret = collect_all('en_core_web_sm')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
@@ -55,7 +53,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='C:/Users/camil/AppData/Local/Temp/977146dc-952e-4fc1-8cb2-cd0647a3b9ca',
 )
 coll = COLLECT(
     exe,

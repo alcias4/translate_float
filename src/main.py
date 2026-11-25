@@ -42,9 +42,9 @@ def App()-> ft.Control:
                 import winsound
                 for path in paths:
                     await asyncio.to_thread(
-                        winsound.PlaySound,
+                        winsound.PlaySound, # type: ignore
                         str(path),
-                        winsound.SND_FILENAME
+                        winsound.SND_FILENAME # type: ignore
                     )
             case "linux":
                 for path in paths:
@@ -126,7 +126,7 @@ def App()-> ft.Control:
         [
             ft.Text("Translate", size=30),
             text_past,
-            ft.Row(controls=[btn_audio, btn_trans]),
+            ft.Row(controls=[btn_audio, btn_trans], max_width=500),
             text_translate
         ], 
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
